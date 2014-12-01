@@ -33,6 +33,8 @@ func NewGist() Gist {
 	return *g
 }
 
+type X interface{}
+
 func (g Gist) All() string {
 	req, err := http.NewRequest("GET", API_ENDPOINT, nil)
 	req.Header.Add("Basic", TOKEN+":x-oauth-basic")
@@ -81,5 +83,8 @@ func (g Gist) Create(name string, desc string, public bool, content string) stri
 		log.Fatal(err)
 	}
 
-	return string(createdGist)
+	var x map[string]X
+	json.Unmarshal(createdGist, &x)
+
+	return x["html_url"].(string)
 }
