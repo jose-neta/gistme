@@ -5,7 +5,7 @@ Gistme creates gists from command line.
 ## First thing first
 
 You'll need to install [http://golang.org/doc/install](go). You'll also 
-need to to generate a personal [acccess token](https://github.com/settings/applications)
+need to to generate a personal [access token](https://github.com/settings/applications)
 
 ## Usage
 
@@ -28,6 +28,8 @@ privacy is the only flag which demands an equal sign.
 Piping some content
 
     cat snippet | go run examples/alpha.go
+    cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
+
 
 # TODO 
 
