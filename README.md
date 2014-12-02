@@ -31,6 +31,18 @@ Piping some content
     cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
 
 
-# TODO 
+# With OSX and Vim
 
-- show usage inside vim 
+## Visual mode
+
+    '<,'>!pbcopy && pbpaste | gistme
+    u
+
+## Insert mode
+
+    :36;39!pbcopy && pbpaste | gistme
+    u
+
+## TODO
+
+write an alias form `.vimrc`
