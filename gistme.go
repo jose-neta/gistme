@@ -53,11 +53,15 @@ func (g Gist) All() string {
 }
 
 // Create creates a new gist
+//
 // TODO -- 2014-11-30 19:34 UTC --JPN --
 // add support for multiple files inside the gist
+//
 // XXX Create only creates anonymous gists. However when you do a simple
+//
 // curl -u <YOUR TOKEN HERE>:x-oauth-basic -XPOST https://api.github.com/gists -d@/tmp/data
-// the gist is as expected created in your account. So I'm probably doing
+//
+// the gist is, as expected, created in your account. So I'm probably doing
 // something wrong.
 func (g Gist) Create(name string, desc string, is_private bool, content string) string {
 	gist_alpha := Gist{
