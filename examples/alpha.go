@@ -28,6 +28,7 @@ func init() {
   flag.StringVar(&description, "d", "gist description", "description of gist")
 }
 
+// main is a command line utility which allow you to create gists
 func main() {
   flag.Parse()
 

@@ -2,9 +2,9 @@
 
 Gistme creates gists from command line.
 
-## First thing first
+## First things first
 
-You'll need to install [http://golang.org/doc/install](go). You'll also 
+You'll need to install [go](http://golang.org/doc/install). You'll also 
 need to to generate a personal [access token](https://github.com/settings/applications)
 
 ## Usage
@@ -30,7 +30,7 @@ Piping some content
     cat snippet | go run examples/alpha.go
     cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
 
-For more info, please read the package [documentation](https://godoc.org/github.com/netp/gistme)
+For more info, please read the [![GoDoc](https://godoc.org/github.com/netp/gistme?status.svg)](https://godoc.org/github.com/netp/gistme)
 
 # With OSX and Vim
 
