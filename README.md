@@ -45,4 +45,4 @@ Piping some content
 
 ## TODO
 
-write an alias form `.vimrc`
+write an alias for `.vimrc`
