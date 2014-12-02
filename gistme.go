@@ -59,10 +59,10 @@ func (g Gist) All() string {
 // curl -u <YOUR TOKEN HERE>:x-oauth-basic -XPOST https://api.github.com/gists -d@/tmp/data
 // the gist is as expected created in your account. So I'm probably doing
 // something wrong.
-func (g Gist) Create(name string, desc string, public bool, content string) string {
+func (g Gist) Create(name string, desc string, is_private bool, content string) string {
 	gist_alpha := Gist{
 		Description: desc,
-		Public:      true,
+		Public:      is_private,
 		Files:       map[string]map[string]string{name: map[string]string{"content": content}},
 	}
 	b, err := json.Marshal(gist_alpha)
