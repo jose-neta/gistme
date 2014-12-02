@@ -9,7 +9,7 @@ need to to generate a personal [access token](https://github.com/settings/applic
 
 ## Usage
 
-### cli side
+### CLI
 
 Creating a private gist
 
@@ -30,6 +30,7 @@ Piping some content
     cat snippet | go run examples/alpha.go
     cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
 
+For more info, please read the package [documentation](https://godoc.org/github.com/netp/gistme)
 
 # With OSX and Vim
 

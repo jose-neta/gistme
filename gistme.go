@@ -57,7 +57,8 @@ func (g Gist) All() string {
 // TODO -- 2014-11-30 19:34 UTC --JPN --
 // add support for multiple files inside the gist
 //
-// XXX Create only creates anonymous gists. However when you do a simple
+// XXX -- 2014-12-02 20:01 UTC --JPN --
+// Create only creates anonymous gists. However when you do a simple
 //
 // curl -u <YOUR TOKEN HERE>:x-oauth-basic -XPOST https://api.github.com/gists -d@/tmp/data
 //
