@@ -30,6 +30,13 @@ Piping some content
     cat snippet | go run examples/alpha.go
     cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
 
+Once you're satisfied with the example/alpha.go, you can build it once 
+and use it forever
+
+    go build examples/alpha.go
+
+move the created binary file to `$HOME/go/bin` or anywhere under your `$PATH`.
+
 For more info, please read the [![GoDoc](https://godoc.org/github.com/netp/gistme?status.svg)](https://godoc.org/github.com/netp/gistme)
 
 # With OSX and Vim
