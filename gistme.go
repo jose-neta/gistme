@@ -57,13 +57,6 @@ func (g Gist) All() string {
 // TODO -- 2014-11-30 19:34 UTC --JPN --
 // add support for multiple files inside the gist
 //
-// XXX -- 2014-12-02 20:01 UTC --JPN --
-// Create only creates anonymous gists. However when you do a simple
-//
-// curl -u <YOUR TOKEN HERE>:x-oauth-basic -XPOST https://api.github.com/gists -d@/tmp/data
-//
-// the gist is, as expected, created in your account. So I'm probably doing
-// something wrong.
 func (g Gist) Create(name string, desc string, is_private bool, content string) string {
 	gist_alpha := Gist{
 		Description: desc,
@@ -76,7 +69,7 @@ func (g Gist) Create(name string, desc string, is_private bool, content string) 
 	}
 
 	req, err := http.NewRequest("POST", API_ENDPOINT, strings.NewReader(string(b)))
-	req.Header.Add("Basic", TOKEN+":x-oauth-basic")
+	req.SetBasicAuth(TOKEN, "x-oauth-basic")
 
 	resp, err := g.Do(req)
 	if err != nil {
