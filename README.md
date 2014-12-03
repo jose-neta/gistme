@@ -38,6 +38,8 @@ and use it forever
 move the created binary file to `$HOME/go/bin` or anywhere under your `$PATH`.
 
 For more info, please read the [![GoDoc](https://godoc.org/github.com/netp/gistme?status.svg)](https://godoc.org/github.com/netp/gistme)
+[![Build Status](https://travis-ci.org/netp/gistme.svg?branch=master)](https://travis-ci.org/netp/gistme)
+
 
 # With OSX and Vim
 
