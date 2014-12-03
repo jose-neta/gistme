@@ -8,6 +8,7 @@ import (
   "flag"
 
 	"github.com/netp/gistme"
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 var (
@@ -32,10 +33,9 @@ func init() {
 func main() {
   flag.Parse()
 
-	// FIXME -- 2014-11-29 14:03 UTC --JPN --
-	// Print this line only if there's no input file comming from
-	// STDIN
-	fmt.Println("Type your message, enter ^D to send, ^C to abort:")
+  if terminal.IsTerminal(int(os.Stdin.Fd())) {
+		fmt.Println("Type your message, enter ^D to send, ^C to abort:")
+	}
 
 	scanner := bufio.NewScanner(os.Stdin)
 	var lines []string
