@@ -1,3 +1,8 @@
+// TODO -- 2014-12-04 02:49 UTC --JPN --
+// legal info here
+
+// Command alpha is just a CLI for gistme.go package
+//
 package main
 
 import (
