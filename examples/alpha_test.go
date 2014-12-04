@@ -8,7 +8,7 @@ import (
 func Example() {
 	hello()
 	// output:
-	// Hello example!
+	// Hello World!
 }
 
 func hello() {
