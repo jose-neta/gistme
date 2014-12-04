@@ -1,15 +1,21 @@
-# gistme
+# gistme [![GoDoc](https://godoc.org/github.com/netp/gistme?status.svg)](https://godoc.org/github.com/netp/gistme) [![Build Status](https://travis-ci.org/netp/gistme.svg?branch=master)](https://travis-ci.org/netp/gistme)
 
-Gistme creates gists from command line.
+Gistme creates gists from CLI.
 
 ## First things first
 
-You'll need to install [go](http://golang.org/doc/install). You'll also 
+You'll need to install [go](http://golang.org/doc/install) and you'll also 
 need to to generate a personal [access token](https://github.com/settings/applications)
 
 ## Usage
 
 ### CLI
+
+Note that every following command assume that you've the value of your 
+token passed via environment variable or by flag -token (-t). Feel free to 
+hit the help at any time.
+
+    gistme -h
 
 Creating a private gist
 
@@ -30,29 +36,26 @@ Piping some content
     cat snippet | go run examples/alpha.go
     cat README.md | go run examples/alpha.go -name="em branco" -d "story of my life" -p=1
 
-Once you're satisfied with the example/alpha.go, you can build it once 
-and use it forever
+You can modify the `example/alpha.go` in order to suits you best. Once 
+you're satisfied with mofications, build it once and use it forever.
 
     go build examples/alpha.go
 
-move the created binary file to `$HOME/go/bin` or anywhere under your `$PATH`.
+Now move the created binary file to `$HOME/go/bin` or anywhere under 
+your `$PATH`.
 
-For more info, please read the [![GoDoc](https://godoc.org/github.com/netp/gistme?status.svg)](https://godoc.org/github.com/netp/gistme)
-[![Build Status](https://travis-ci.org/netp/gistme.svg?branch=master)](https://travis-ci.org/netp/gistme)
+### With Vim on OSX
 
-
-# With OSX and Vim
-
-## Visual mode
+#### Visual mode
 
     '<,'>!pbcopy && pbpaste | gistme
     u
 
-## Insert mode
+#### Insert mode
 
     :36;39!pbcopy && pbpaste | gistme
     u
 
-## TODO
+# TODO
 
-write an alias for `.vimrc`
+Write an alias for `.vimrc`
