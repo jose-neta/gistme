@@ -12,10 +12,44 @@ need to to generate a personal [access token](https://github.com/settings/applic
 ### CLI
 
 Note that every following command assume that you've the value of your 
-token passed via environment variable or by flag -token (-t). Feel free to 
-hit the help at any time.
+token passed via environment variable or by flag -token (-t). 
+
+If you hit `gistme` alone you'll get
+
+    gistme
+
+      You must define the token value via env var $TOKEN
+      OR pass the token value via -token (-t) flag.
+      Please see gistme -h
+
+You must pass the token either by flat -token (-t)
+
+    gistme -t `cat sandbox/token`
+
+      Type your message, enter ^D to send, ^C to abort:
+      done
+      https://gist.github.com/1917fbcbe922c4d290af
+
+or by environment variable
+
+    TOKEN=`cat sandbox/token` gistme
+
+      Type your message, enter ^D to send, ^C to abort:
+      env var way
+
+Fell free to check the help
 
     gistme -h
+
+      Usage of gistme:
+        -d="gist description": description of gist
+        -desc="gist description": gist description
+        -n="gist name": name of the gist file
+        -name="gist name": name of the gist file
+        -p=false: privacy
+        -private=false: privacy
+        -t="": your user token
+        -token="": your user token
 
 Creating a private gist
 
