@@ -2,6 +2,7 @@ package gistme
 
 import (
 	"fmt"
+	"strings"
 )
 
 // Invoking the gist client
@@ -10,11 +11,16 @@ func ExampleGist() {
 	fmt.Printf("%v", x)
 }
 
+// NOTE -- 2014-12-04 03:07 UTC --JPN --
+// The test will not run for ExampleGist_All because I've altered the name
+// 'output:' to 'The output:'. This was done on purpose.
+
 // Listing all your gists
 func ExampleGist_All() {
 	x := NewGist("<your token here>")
 	fmt.Println(x.All())
-	// output:
+
+	// The output:
 	//  [
 	//      {
 	//          "url": "https://api.github.com/gists/ef9436173feb965ee019",
@@ -89,14 +95,18 @@ func ExampleGist_All() {
 
 }
 
+// NOTE -- 2014-12-04 03:10 UTC --JPN --
+// once again if you run the tests go test -v ./... you will not run them
+// for ExampleGist_Create as well, because we are not defining the output.
+
 // Creating a new gist
 func ExampleGist_Create() {
 	x := NewGist("<your token here>")
 
 	content := []string{"line one", "line ...", "line n"}
-	res := x.Create("my gist name", "my gist description", true, strings.Join(lines, "\n"))
+	res := x.Create("my gist name", "my gist description", true, strings.Join(content, "\n"))
 	fmt.Println(res)
 
-	// output:
-	// https://gist.github.com/65d7b64d7871d4f89c47
+	// The output:
+	// https://gist.github.com/28d51bc36acdac7610a3
 }
