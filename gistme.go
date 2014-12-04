@@ -8,12 +8,8 @@ import (
 	"strings"
 )
 
-// FIXME -- 2014-11-30 12:33 UTC --JPN --
-// move the token out of here, for example keep it inside an ENV var.
-
 // API endpoint
 const (
-	TOKEN        = "<PUT YOUR TOKEN HERE>"
 	API_ENDPOINT = "https://api.github.com/gists"
 )
 
@@ -24,14 +20,17 @@ type Gist struct {
 	Description string                       `json:"description"`
 	Public      bool                         `json:"public"`
 	Files       map[string]map[string]string `json:"files"`
+
+	token string
 }
 
 // NewGist function creates a new gist client
-func NewGist() Gist {
+func NewGist(tok string) Gist {
 	g := new(Gist)
 
 	//g.ua = &http.Client{}
 	g.Client = &http.Client{}
+	g.token = tok
 
 	return *g
 }
@@ -39,7 +38,7 @@ func NewGist() Gist {
 // All method lists all gists from your account
 func (g Gist) All() string {
 	req, err := http.NewRequest("GET", API_ENDPOINT, nil)
-	req.Header.Add("Basic", TOKEN+":x-oauth-basic")
+	req.Header.Add("Basic", g.token+":x-oauth-basic")
 
 	resp, err := g.Do(req)
 	if err != nil {
@@ -74,7 +73,7 @@ func (g Gist) Create(name string, desc string, is_private bool, content string) 
 	}
 
 	req, err := http.NewRequest("POST", API_ENDPOINT, strings.NewReader(string(b)))
-	req.SetBasicAuth(TOKEN, "x-oauth-basic")
+	req.SetBasicAuth(g.token, "x-oauth-basic")
 
 	resp, err := g.Do(req)
 	if err != nil {
