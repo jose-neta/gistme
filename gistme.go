@@ -8,23 +8,25 @@ import (
 	"strings"
 )
 
-// API endpoint
+// API endpoint.
 const (
 	API_ENDPOINT = "https://api.github.com/gists"
 )
 
+// NOTE -- 2014-12-04 02:27 UTC --JPN --
+// `*http.Client` could have been ua `*http.Client` instead.
+
 // A Gist is an HTTP client which also represents a Gist.
 type Gist struct {
-	//ua *http.Client
 	*http.Client
 	Description string                       `json:"description"`
 	Public      bool                         `json:"public"`
 	Files       map[string]map[string]string `json:"files"`
 
-	token string
+	token string // this field is private
 }
 
-// NewGist function creates a new gist client
+// NewGist function creates a new gist client.
 func NewGist(tok string) Gist {
 	g := new(Gist)
 
@@ -35,7 +37,7 @@ func NewGist(tok string) Gist {
 	return *g
 }
 
-// All method lists all gists from your account
+// All method lists all gists from your account.
 func (g Gist) All() string {
 	req, err := http.NewRequest("GET", API_ENDPOINT, nil)
 	req.Header.Add("Basic", g.token+":x-oauth-basic")
@@ -59,7 +61,7 @@ func (g Gist) All() string {
 // FIXME -- 2014-12-04 00:23 UTC --JPN --
 // Create method should be returning a Gist type.
 
-// Create method creates a new gist
+// Create method creates a new gist.
 func (g Gist) Create(name string, desc string, is_private bool, content string) string {
 
 	gist_alpha := Gist{
