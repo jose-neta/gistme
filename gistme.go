@@ -8,34 +8,37 @@ import (
 	"strings"
 )
 
-// FIXME -- 2014-11-30 12:33 UTC --JPN --
-// move the token out of here, for example keep it inside an ENV var.
+// API endpoint
 const (
-	TOKEN        = "<PUT YOUR TOKEN HERE>"
 	API_ENDPOINT = "https://api.github.com/gists"
 )
 
+// A Gist is an HTTP client which also represents a Gist.
 type Gist struct {
 	//ua *http.Client
 	*http.Client
 	Description string                       `json:"description"`
 	Public      bool                         `json:"public"`
 	Files       map[string]map[string]string `json:"files"`
+
+	token string
 }
 
-//
-func NewGist() Gist {
+// NewGist function creates a new gist client
+func NewGist(tok string) Gist {
 	g := new(Gist)
 
 	//g.ua = &http.Client{}
 	g.Client = &http.Client{}
+	g.token = tok
 
 	return *g
 }
 
+// All method lists all gists from your account
 func (g Gist) All() string {
 	req, err := http.NewRequest("GET", API_ENDPOINT, nil)
-	req.Header.Add("Basic", TOKEN+":x-oauth-basic")
+	req.Header.Add("Basic", g.token+":x-oauth-basic")
 
 	resp, err := g.Do(req)
 	if err != nil {
@@ -50,12 +53,15 @@ func (g Gist) All() string {
 	return string(gists)
 }
 
-// Create creates a new gist
-//
 // TODO -- 2014-11-30 19:34 UTC --JPN --
-// add support for multiple files inside the gist
-//
+// add support for multiple files inside the same gist
+
+// FIXME -- 2014-12-04 00:23 UTC --JPN --
+// Create method should be returning a Gist type.
+
+// Create method creates a new gist
 func (g Gist) Create(name string, desc string, is_private bool, content string) string {
+
 	gist_alpha := Gist{
 		Description: desc,
 		Public:      is_private,
@@ -67,7 +73,7 @@ func (g Gist) Create(name string, desc string, is_private bool, content string) 
 	}
 
 	req, err := http.NewRequest("POST", API_ENDPOINT, strings.NewReader(string(b)))
-	req.SetBasicAuth(TOKEN, "x-oauth-basic")
+	req.SetBasicAuth(g.token, "x-oauth-basic")
 
 	resp, err := g.Do(req)
 	if err != nil {
